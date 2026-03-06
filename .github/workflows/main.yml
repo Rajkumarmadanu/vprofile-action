@@ -25,24 +25,20 @@ jobs:
           distribution: 'temurin' #see 'supported distributions for availability'
           java-version: '11'
 
-      # setup sonar-scanner
-      - name: setup sonarqube
-        uses: warchant/setup-sonar-scanner@v7
-
-
       ### run sonar-scanner
       - name: sonarqube scanner
-        run: sonar-scanner
-          -Dsonar.host.url=${{ secrets.SONAR_URL }}
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-          -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
-          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-          -Dsonar.sources=src/
-          -Dsonar.junit.reportsPaths=target/surefire-reports/
-          -Dsonar.jacoco.reportsPaths=target/jacoco.exec
-          -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml
-          -Dsonar.java.binaries=target/classes
-          -X
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+            -Dsonar.sources=src/
+            -Dsonar.junit.reportsPaths=target/surefire-reports/
+            -Dsonar.jacoco.reportsPaths=target/jacoco.exec
+            -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml
+            -Dsonar.java.binaries=target/classes
 
 
       # Check the quality gate status
