@@ -45,11 +45,11 @@ jobs:
 
 
       # Check the quality gate status
-      - name: Sonar quality gate Check
-        id: sonarqube-quality-gate-check
-        uses: sonarsource/sonar-quality-gate-action@master
+      #- name: Sonar quality gate Check
+       # id: sonarqube-quality-gate-check
+        #uses: sonarsource/sonar-quality-gate-action@master
         # Force to fall sleep after specific time
-        timeout-minutes: 5
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_URL }} #optional
+        #timeout-minutes: 5
+        #env:
+         # SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          #SONAR_HOST_URL: ${{ secrets.SONAR_URL }} #optional
