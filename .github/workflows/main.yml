@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Maven Test
-        run: mvn test
+        run: mvn test jacoco:report
       
       - name: checkstyle
         run: mvn checkstyle:checkstyle
@@ -41,7 +41,8 @@ jobs:
           -Dsonar.junit.reportsPaths=target/surefire-reports/
           -Dsonar.jacoco.reportsPaths=target/jacoco.exec
           -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml
-          -Dsonar.java.binaries=target/test-classes/com/visualpathit/account
+          -Dsonar.java.binaries=target/classes
+          -X
 
 
       # Check the quality gate status
