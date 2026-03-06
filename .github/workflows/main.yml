@@ -15,6 +15,9 @@ jobs:
       - name: Maven Test
         run: mvn test
       
+      - name: Maven compile
+        run: mvn clean compile
+      
       - name: checkstyle
         run: mvn checkstyle:checkstyle
 
@@ -35,6 +38,7 @@ jobs:
           args: >
             -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
             -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+            -Dsonar.java.binaries=target/classes
 
       # Check the quality gate status
       # - name: Sonar quality gate Check
