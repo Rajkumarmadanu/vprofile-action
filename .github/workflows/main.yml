@@ -30,7 +30,7 @@ jobs:
         uses: warchant/setup-sonar-scanner@v7
 
 
-      # run sonar-scanner
+      ### run sonar-scanner
       - name: sonarqube scanner
         run: sonar-scanner
           - Dsonar.host.url=${{ secrets.SONAR_URL }}
@@ -52,4 +52,4 @@ jobs:
         #timeout-minutes: 5
         #env:
          # SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          #SONAR_HOST_URL: ${{ secrets.SONAR_URL }} #optional
+          #SONAR_HOST_URL: ${{ secrets.SONAR_URL }} #optional#
